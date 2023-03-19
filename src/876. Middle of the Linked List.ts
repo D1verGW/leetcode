@@ -34,21 +34,18 @@ function middleNode(head: ListNode | null): ListNode | null {
     return slow;
 }
 
-function testMiddleNode(head: number[], expected: number[]): void {
-    expect(middleNode(arrayToListNode(head))).toEqual(arrayToListNode(expected));
-}
-
-describe('876. Middle of the Linked List', () => {
-    test(`Given the head of a singly linked list, return the middle node of the linked list. If there are two middle nodes, return the second middle node.`, () => {
-        testMiddleNode([1], [1]);
-        testMiddleNode([1, 2], [2]);
-        testMiddleNode([1, 2, 3], [2, 3]);
-        testMiddleNode([1, 2, 3, 4], [3, 4]);
-        testMiddleNode([1, 2, 3, 4, 5], [3, 4, 5]);
-        testMiddleNode([1, 2, 3, 4, 5, 6], [4, 5, 6]);
-        testMiddleNode([1, 2, 3, 4, 5, 6, 7], [4, 5, 6, 7]);
-        testMiddleNode([1, 2, 3, 4, 5, 6, 7, 8], [5, 6, 7, 8]);
-        testMiddleNode([1, 2, 3, 4, 5, 6, 7, 8, 9], [5, 6, 7, 8, 9]);
-        testMiddleNode([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [6, 7, 8, 9, 10]);
+describe(`876. Middle of the Linked List. Given the head of a singly linked list, return the middle node of the linked list. If there are two middle nodes, return the second middle node.`, () => {
+    test.each([
+        { head: [1], expected: [1] },
+        { head: [1, 2], expected: [2] },
+        { head: [1, 2, 3], expected: [2, 3] },
+        { head: [1, 2, 3, 4], expected: [3, 4] },
+        { head: [1, 2, 3, 4, 5], expected: [3, 4, 5] },
+        { head: [1, 2, 3, 4, 5, 6], expected: [4, 5, 6] },
+        { head: [1, 2, 3, 4, 5, 6, 7], expected: [4, 5, 6, 7] },
+        { head: [1, 2, 3, 4, 5, 6, 7, 8], expected: [5, 6, 7, 8] },
+        { head: [1, 2, 3, 4, 5, 6, 7, 8, 9], expected: [5, 6, 7, 8, 9] },
+    ])(`$head => $expected`, ({ head, expected }) => {
+        expect(middleNode(arrayToListNode(head))).toEqual(arrayToListNode(expected));
     });
 });
