@@ -22,14 +22,16 @@ function canConstruct(ransomNote: string, magazine: string): boolean {
     return !isDictionaryHasNotEnoughLetters;
 }
 
-describe('383. Ransom Note', () => {
-    test(`Given two stings ransomNote and magazine, return true if ransomNote can be constructed from magazine and false otherwise. Each letter in magazine can only be used once in ransomNote.`, () => {
-        expect(canConstruct('a', 'b')).toEqual(false);
-        expect(canConstruct('aa', 'ab')).toEqual(false);
-        expect(canConstruct('aa', 'aab')).toEqual(true);
-        expect(canConstruct('a', 'a')).toEqual(true);
-        expect(canConstruct('red', 'der')).toEqual(true);
-        expect(canConstruct('faraway', 'aaafryw')).toEqual(true);
-        expect(canConstruct('faraway', 'aafryz')).toEqual(false);
+describe('383. Ransom Note. Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise. Each letter in magazine can only be used once in ransomNote.', () => {
+    test.each([
+        { ransomNote: 'a', magazine: 'b', expected: false },
+        { ransomNote: 'aa', magazine: 'ab', expected: false },
+        { ransomNote: 'aa', magazine: 'aab', expected: true },
+        { ransomNote: 'a', magazine: 'a', expected: true },
+        { ransomNote: 'red', magazine: 'der', expected: true },
+        { ransomNote: 'faraway', magazine: 'aaafryw', expected: true },
+        { ransomNote: 'faraway', magazine: 'aafryz', expected: false },
+    ])(`RansomNote $ransomNote, magazine $magazine, expected $expected`, ({ magazine, ransomNote, expected }) => {
+        expect(canConstruct(ransomNote, magazine)).toEqual(expected);
     });
 });
